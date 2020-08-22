@@ -22,7 +22,7 @@ public class ChatServer implements TCPConnectionListener {
         try (final ServerSocket server = new ServerSocket(8000)) {
             while (true) {
                 try {
-                    new TCPConnection(ChatServer.this, server.accept());
+                    new TCPConnection(this, server.accept());
                 } catch (IOException e) {
                     System.out.println("TCPConnection exception");
                 }
@@ -62,6 +62,6 @@ public class ChatServer implements TCPConnectionListener {
 
     private void sentToAllConnection(final String value) {
         System.out.println(value);
-        this.connections.forEach(i -> i.sendString(value));
+        this.connections.forEach(connection -> connection.sendString(value));
     }
 }

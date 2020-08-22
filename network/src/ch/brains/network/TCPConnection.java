@@ -38,7 +38,6 @@ public class TCPConnection {
                 while (!this.rxThread.isInterrupted()) {
                     this.eventListener.onReceiveString(TCPConnection.this, this.in.readLine());
                 }
-                this.in.readLine();
             } catch (IOException e) {
                 this.eventListener.onException(TCPConnection.this, e);
             } finally {
